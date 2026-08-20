@@ -20,9 +20,9 @@ Stream<bool> getLightStatus(String ip) async* {
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        yield data['value'] == true; // 👈 Wert an Stream senden
+        yield data['value'] == true;
       } else {
-        yield false; // oder Fehlerwert senden
+        yield false; 
       }
     } on TimeoutException{
       print("Timeout – keine Verbindung zu $ip");
@@ -30,10 +30,10 @@ Stream<bool> getLightStatus(String ip) async* {
     }
     catch (e) {
       print("Fehler beim Abrufen: $e");
-      yield false; // Fehlerfall
+      yield false; 
     }
 
-    // Warte 1 Sekunde bis zur nächsten Abfrage
+    
     await Future.delayed(const Duration(seconds: 1));
   }
 }
